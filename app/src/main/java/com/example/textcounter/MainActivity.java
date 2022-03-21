@@ -36,24 +36,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCalculatebutton(View view) {
-        if(true) {
-            if (this.spOptionSelect.getSelectedItem().toString().equalsIgnoreCase("Words")) {
-            } else {
-                int charCount = TextUtils.getCharsCount(this.txtMain.getText().toString());
-                String charsCountstr = String.valueOf(charCount);
-                this.tvResult.setText(charsCountstr);
-
-
+        if (txtMain.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Empty text", Toast.LENGTH_LONG).show();
+        }
+        else {
+            if (this.spOptionSelect.getSelectedItem().toString().equalsIgnoreCase("Characters"))
+                {
+                    int charCount = TextUtils.getCharsCount(this.txtMain.getText().toString());
+                    String charsCountstr = String.valueOf(charCount);
+                    this.tvResult.setText(charsCountstr);
+                }
+        else{
+            int wordsCount = TextUtils.getWordsCount(this.txtMain.getText().toString().split("\\s+" ));
+            String wordsCountstr = String.valueOf(wordsCount);
+            this.tvResult.setText(wordsCountstr);
 /*           String content = this.txtMain.getText().toString();
            int charCount = content.length();
            String charsCountstr = String.valueOf(charCount);
             this.tvResult.setText(charsCountstr);*/
+                }
+
             }
         }
-        else {
-            Toast.makeText(this,"Empty text", Toast.LENGTH_LONG).show();
-        }
     }
-}
-
-
